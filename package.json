@@ -1,0 +1,13 @@
+{
+  "name": "twverd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Seia-Soto <seia@outlook.kr>",
+  "license": "MIT",
+  "devDependencies": {
+    "now": "^19.1.1"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}

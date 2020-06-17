@@ -1,0 +1,19 @@
+{
+  "name": "twverd",
+  "version": 2,
+  "routes": [
+    {
+      "src": "/",
+      "status": 301,
+      "headers": {
+        "Location": "https://seia.io"
+      }
+    },
+    {
+      "src": "/_ptest",
+      "dest": "https://seia.io"
+    }
+  ],
+  "regions": "all",
+  "public": false
+}
