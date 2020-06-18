@@ -12,4 +12,5 @@ To prevent these unwanted side-effects of Twitch video-edge decision, we can use
 ## Known problems
 
 - When you watch streaming in higher quality than 720p60, you may get a network error \#2000 because Vercel doesn't allow streaming more than 6MB at once.
+- When you don't use `less response time` option in playback option, you may get lag while client switches the video source.
 - When you don't use `.pipe` method and send `Buffer` from `node-fetch` manually, you may get lags while switching the video source in Twitch app because each part of the stream should be merged without any delay.
