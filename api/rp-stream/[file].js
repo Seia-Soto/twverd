@@ -1,9 +1,5 @@
 const fetch = require('node-fetch')
 
-const allowedIngests = [
-  'sel01', 'sel03'
-]
-
 module.exports = async (req, res) => {
   const { file } = req.query
   const patterns = {
@@ -26,18 +22,30 @@ module.exports = async (req, res) => {
     })
   }
 
-  // NOTE: Server locale verification.
-  if (allowedIngests.includes(patterns.videoEdge.exec(url.hostname)[1])) {
-    res.writeHead(
-      301,
-      {
-        Location: file
-      }
-    )
-    res.end()
-  }
+  console.log(`
+[REQUEST: ${req.headers['x-now-id']}]
 
-  const response = await fetch(url)
+processing: ${url}
+headers: ${JSON.stringify(req.headers)}
+`)
+
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      accept: req.headers.accept,
+      'user-agent': req.headers['user-agent']
+    }
+  })
+
+console.log(`
+[RESPONSE: ${req.headers['x-now-id']}]
+
+headers: ${JSON.stringify(response.headers)}
+`)
+
+  res.setHeader('Accept-Ranges', 'bytes')
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  res.setHeader('Content-Type', 'application/octect-stream')
 
   response.body.pipe(res)
 }
